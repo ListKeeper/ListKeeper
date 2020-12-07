@@ -2,6 +2,7 @@ import React from "react";
 import { useSession, signin, signout } from "next-auth/client";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import styles from "../styles/SignIn.module.css";
 
 const logOutTheme = createMuiTheme({
   overrides: {
@@ -47,7 +48,7 @@ export default function SignIn() {
   const [session, loading] = useSession();
 
   return (
-    <p>
+    <p className={styles.container}>
       {!session && (
         <>
           Not signed in <br />

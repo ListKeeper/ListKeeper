@@ -1,5 +1,25 @@
 .container {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.shield {
+  transform: scale(3);
+}
+
+.title {
+  font-size: 4em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  margin: 40px 0;
+  width: 50%;
+  border-radius: 50px;
 }
