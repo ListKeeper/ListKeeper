@@ -3,6 +3,8 @@ import { Provider } from "next-auth/client";
 import React, { useState, useEffect } from "react";
 import ReducerProvider from "../Reducers/ReducerProvider";
 
+// Loading the initial state from the DB
+// this would be a good place to add themes or an app/menu bar
 export default function App({ Component, pageProps }) {
   const [initialState, setInitialState] = useState(null);
 

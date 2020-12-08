@@ -5,8 +5,6 @@ const initialState = require("../../Reducers/reducer").initialState;
 // Create cached connection variable
 let cachedDb = null;
 
-// A function for connecting to MongoDB,
-// taking a single parameter of the connection string
 async function connectToDatabase(uri) {
   // If the database connection is cached,
   // use it instead of creating a new connection
@@ -14,7 +12,6 @@ async function connectToDatabase(uri) {
     return cachedDb;
   }
 
-  // If no connection is cached, create a new one
   const client = await MongoClient.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -24,26 +21,22 @@ async function connectToDatabase(uri) {
   // using the database path of the connection string
   const db = await client.db(url.parse(uri).pathname.substr(1));
 
-  // Cache the database connection and return the connection
   cachedDb = db;
   return db;
 }
 
-// The main, exported, function of the endpoint,
-// dealing with the request and subsequent response
+// retrieves the session token, retrieves the corresponding userId
+// & gets/updates their appData
 module.exports = async (req, res) => {
-  // Get a database connection, cached or otherwise,
-  // using the connection string environment variable as the argument
   const db = await connectToDatabase(process.env.MONGODB_URI);
   const sessionToken = req.cookies["next-auth.session-token"];
 
   if (!sessionToken) {
     return res.status(401).json({});
   }
-  // Select the "users" collection from the database
+
   const sessionsCollection = await db.collection("sessions");
 
-  // Select the users collection from the database
   const session = await sessionsCollection.findOne({ sessionToken });
   const userId = session.userId;
 
