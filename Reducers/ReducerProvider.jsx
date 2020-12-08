@@ -4,8 +4,8 @@ import { reducer, StoreContext } from "./reducer";
 
 // Responsible for creating the reducer
 // Made this file to create the reducer once the initial state is loaded
-const ReducerProvider = (props) => {
-  const [state, dispatch] = useReducer(reducer, props.initialState);
+const ReducerProvider = ({ initialState, children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(async () => {
     await fetch("/api/appData", {
@@ -16,9 +16,18 @@ const ReducerProvider = (props) => {
 
   return (
     <StoreContext.Provider value={{ dispatch, state }}>
-      {props.children}
+      {children}
     </StoreContext.Provider>
   );
+};
+
+ReducerProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  initialState: PropTypes.object.isRequired,
 };
 
 export default ReducerProvider;
