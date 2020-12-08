@@ -34,13 +34,28 @@ module.exports = async (req, res) => {
   // Get a database connection, cached or otherwise,
   // using the connection string environment variable as the argument
   const db = await connectToDatabase(process.env.MONGODB_URI);
+  const sessionToken = req.cookies["next-auth.session-token"];
 
   // Select the "users" collection from the database
-  const collection = await db.collection("users");
+  const sessionsCollection = await db.collection("sessions");
 
   // Select the users collection from the database
-  const users = await collection.find({}).toArray();
+  const session = await sessionsCollection.findOne({ sessionToken });
+  const userId = session.userId;
 
-  // Respond with a JSON string of all users in the collection
-  res.status(200).json({ users });
+  const todoDataCollection = await db.collection("todoData");
+
+  if (req.method === "GET") {
+    const todoData = await todoDataCollection.findOne({ userId });
+    res.status(200).json(todoData || {});
+  } else if (req.method === "PUT") {
+    await todoDataCollection.replaceOne(
+      { userId },
+      { ...JSON.parse(req.body), userId },
+      { upsert: true }
+    );
+    res.status(200).json({});
+  } else {
+    res.status(405).json({});
+  }
 };
