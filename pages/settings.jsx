@@ -3,6 +3,7 @@ import { StoreContext } from "../Reducers/reducer.js";
 import Todo from "../Components/Todo.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import styles from "../styles/Todo.module.css";
+import Link from "next/link"
 
 // Any component can grab and use state & dispatch
 const Settings = () => {
@@ -32,6 +33,9 @@ const Settings = () => {
             dispatch({ type: "add-contact", payload: { phoneNumber } })
           }
         />
+      </div>
+      <div>
+      <Link href="/"><button>Back</button></Link>
       </div>
     </>
   );
