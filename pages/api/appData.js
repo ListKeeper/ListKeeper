@@ -36,6 +36,9 @@ module.exports = async (req, res) => {
   const db = await connectToDatabase(process.env.MONGODB_URI);
   const sessionToken = req.cookies["next-auth.session-token"];
 
+  if (!sessionToken) {
+    return res.status(401).json({});
+  }
   // Select the "users" collection from the database
   const sessionsCollection = await db.collection("sessions");
 
@@ -43,13 +46,16 @@ module.exports = async (req, res) => {
   const session = await sessionsCollection.findOne({ sessionToken });
   const userId = session.userId;
 
-  const todoDataCollection = await db.collection("todoData");
+  const appDataCollection = await db.collection("appData");
 
   if (req.method === "GET") {
-    const todoData = await todoDataCollection.findOne({ userId });
-    res.status(200).json(todoData || {});
+    const appData = await appDataCollection.findOne(
+      { userId },
+      { fields: { _id: 0, userId: 0 } }
+    );
+    res.status(200).json(appData || { todos: [] });
   } else if (req.method === "PUT") {
-    await todoDataCollection.replaceOne(
+    await appDataCollection.replaceOne(
       { userId },
       { ...JSON.parse(req.body), userId },
       { upsert: true }

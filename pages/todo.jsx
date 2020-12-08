@@ -1,17 +1,13 @@
-import React, { useReducer, useEffect } from "react";
-import { initialState, reducer } from "../Reducers/todo.reducer.js";
+import React, { useContext } from "react";
+import { StoreContext } from "../Reducers/todo.reducer.js";
 import Todo from "../Components/Todo.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import styles from "../styles/Todo.module.css";
 
+// Any component can grab and use state & dispatch
 const TodoApp = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(async () => {
-    await fetch("/api/todoData", {
-      method: "PUT",
-      body: JSON.stringify(state),
-    });
-  }, [state]);
+  const { state, dispatch } = useContext(StoreContext);
+
   return (
     <>
       <div className={styles.container}>
@@ -29,4 +25,5 @@ const TodoApp = () => {
     </>
   );
 };
+
 export default TodoApp;
