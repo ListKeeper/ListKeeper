@@ -1,4 +1,6 @@
 import React from "react";
+import uniqid from "uniqid";
+
 // Context
 // will be used to pass down the dispatch method and our
 // application state via the Context Provider and consumed
@@ -6,41 +8,84 @@ import React from "react";
 export const StoreContext = React.createContext(null);
 
 export const initialState = {
-  counter: 2,
   todos: [],
+  settings: { emergencyContacts: [] },
 };
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "add": {
-      const newCounter = state.counter + 1;
+    case "add-todo": {
       const newTodo = {
-        id: newCounter,
+        id: uniqid(),
         text: action.text,
       };
       return {
-        counter: newCounter,
+        ...state,
         todos: [...state.todos, newTodo],
       };
     }
-    case "edit": {
+    case "edit-todo": {
       const idx = state.todos.findIndex((t) => t.id === action.id);
-      const todo = Object.assign({}, state.todos[idx]);
+      const todo = { ...state.todos[idx] };
       todo.text = action.text;
-      const todos = Object.assign([], state.todos);
+      const todos = [...state.todos];
       todos.splice(idx, 1, todo);
       return {
-        counter: state.counter,
+        ...state,
         todos: todos,
       };
     }
-    case "remove": {
+    case "remove-todo": {
       const idx = state.todos.findIndex((t) => t.id === action.id);
-      const todos = Object.assign([], state.todos);
+      const todos = [...state.todos];
       todos.splice(idx, 1);
       return {
-        counter: state.counter,
+        ...state,
         todos: todos,
+      };
+    }
+    case "add-contact": {
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          emergencyContacts: [
+            ...state.settings.emergencyContacts,
+            { phoneNumber: action.payload.phoneNumber, id: uniqid() },
+          ],
+        },
+      };
+    }
+    case "edit-contact": {
+      const idx = state.settings.emergencyContacts.findIndex(
+        (c) => c.id === action.payload.id
+      );
+      const contact = {
+        ...state.settings.emergencyContacts[idx],
+        phoneNumber: action.payload.phoneNumber,
+      };
+      const emergencyContacts = [...state.settings.emergencyContacts];
+      emergencyContacts.splice(idx, 1, contact);
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          emergencyContacts,
+        },
+      };
+    }
+    case "remove-contact": {
+      const idx = state.settings.emergencyContacts.findIndex(
+        (c) => c.id === action.payload.id
+      );
+      const emergencyContacts = [...state.settings.emergencyContacts];
+      emergencyContacts.splice(idx, 1);
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          emergencyContacts,
+        },
       };
     }
     default:
