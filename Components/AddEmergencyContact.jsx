@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
-const AddTodo = ({ add }) => {
+const AddEmergencyContact = ({ add }) => {
   const [text, setText] = useState("");
   return (
-    <div className="AddTodo">
+    <div className="AddEmergencyContact">
       <input
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="AddTodoInput"
+        className="AddEmergencyContactInput"
       />
       <button
-        className="AddTodoButton"
+        className="AddEmergencyContactButton"
         onClick={() => {
           add(text);
           setText("");
@@ -22,4 +22,4 @@ const AddTodo = ({ add }) => {
   );
 };
 
-export default AddTodo;
+export default AddEmergencyContact;

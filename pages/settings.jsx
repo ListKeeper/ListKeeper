@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../Reducers/reducer.js";
-import Todo from "../Components/Todo.jsx";
-import AddTodo from "../Components/AddTodo.jsx";
+import EmergencyContact from "../Components/EmergencyContact";
+import AddEmergencyContact from "../Components/AddEmergencyContact";
 import styles from "../styles/Todo.module.css";
 import Link from "next/link"
 
@@ -14,9 +14,9 @@ const Settings = () => {
       <div className={styles.container}>
         <h1>Settings</h1>
         {state.settings.emergencyContacts.map((c) => (
-          <Todo
+          <EmergencyContact
             key={c.id}
-            todo={c}
+            emergencyContact={c}
             remove={() =>
               dispatch({ type: "remove-contact", payload: { id: c.id } })
             }
@@ -28,7 +28,7 @@ const Settings = () => {
             }
           />
         ))}
-        <AddTodo
+        <AddEmergencyContact
           add={(phoneNumber) =>
             dispatch({ type: "add-contact", payload: { phoneNumber } })
           }
