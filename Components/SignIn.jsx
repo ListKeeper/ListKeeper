@@ -3,6 +3,7 @@ import { useSession, signin, signout } from "next-auth/client";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import styles from "../styles/SignIn.module.css";
+import Link from "next/link"
 
 const logOutTheme = createMuiTheme({
   overrides: {
@@ -44,6 +45,8 @@ const loggedInTheme = createMuiTheme({
   },
 });
 
+
+
 export default function SignIn() {
   const [session, loading] = useSession();
 
@@ -62,6 +65,10 @@ export default function SignIn() {
           Signed in as {session.user.email} <br />
           <ThemeProvider theme={logOutTheme}>
             <Button onClick={signout}>Sign out</Button>
+          </ThemeProvider>
+          <br />
+          <ThemeProvider theme={logOutTheme}>
+            <Button><Link href="/todo">Todo List</Link></Button>
           </ThemeProvider>
         </>
       )}

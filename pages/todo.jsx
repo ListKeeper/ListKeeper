@@ -3,6 +3,7 @@ import { StoreContext } from "../Reducers/reducer.js";
 import Todo from "../Components/Todo.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import styles from "../styles/Todo.module.css";
+import Link from "next/link"
 
 // Any component can grab and use state & dispatch
 const TodoApp = () => {
@@ -23,6 +24,9 @@ const TodoApp = () => {
           />
         ))}
         <AddTodo add={(text) => dispatch({ type: "add-todo", text: text })} />
+        <div>
+          <Link href="/"><button>Back</button></Link>
+        </div>
       </div>
     </>
   );

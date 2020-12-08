@@ -8,6 +8,9 @@
 
 .shield {
   transform: scale(3);
+  z-index: -1;
+  margin-top: -58px;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -23,3 +26,39 @@
   width: 50%;
   border-radius: 50px;
 }
+
+.tl .tr .bl .br {
+  z-index: 1000;
+}
+
+.secret {
+  display: flex;
+
+  /* opacity: 0%; */
+}
+
+.secretdivider {
+  margin: 0 2px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+  opacity: 0;
+  /* set this flag off for debug */
+}
+
+/* .tl {
+  margin-bottom: -5px;
+}
+
+.tr {
+  margin-bottom: 5px;
+  margin-top: 19px;
+}
+
+.bl {
+  margin-top: 0;
+}
+
+.br {
+  margin-top: 0;
+} */
