@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import EmergencyContactForm from "./EmergencyContactForm";
+import PropTypes from "prop-types";
+// import EmergencyContactForm from "./EmergencyContactForm";
 
-const EmergencyContact = ({ emergencyContact, remove, edit }) => {
+const EmergencyContactList = ({ emergencyContact, remove, edit }) => {
   const [mode, setMode] = useState("list");
   const [contact, setContact] = useState(emergencyContact);
   return (
@@ -11,12 +12,17 @@ const EmergencyContact = ({ emergencyContact, remove, edit }) => {
           <span className="EmergencyContactText">
             {emergencyContact.phoneNumber}
           </span>
-          <button className="RemoveEmergencyContact" onClick={remove}>
+          <button
+            className="RemoveEmergencyContact"
+            onClick={remove}
+            type="button"
+          >
             Remove
           </button>
           <button
             className="EditEmergencyContact"
             onClick={() => setMode("edit")}
+            type="button"
           >
             Edit
           </button>
@@ -24,22 +30,24 @@ const EmergencyContact = ({ emergencyContact, remove, edit }) => {
       ) : (
         <>
           <input
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
             className="EditEmergencyContactInput"
           />
           <button
             className="EditEmergencyContactSave"
             onClick={() => {
-              edit(text);
+              edit(contact);
               setMode("list");
             }}
+            type="button"
           >
             Save
           </button>
           <button
             className="EditEmergencyContactCancel"
             onClick={() => setMode("list")}
+            type="button"
           >
             Cancel
           </button>
@@ -49,4 +57,15 @@ const EmergencyContact = ({ emergencyContact, remove, edit }) => {
   );
 };
 
-export default EmergencyContact;
+EmergencyContactList.propTypes = {
+  emergencyContact: PropTypes.shape({
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    email: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+  remove: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+};
+
+export default EmergencyContactList;

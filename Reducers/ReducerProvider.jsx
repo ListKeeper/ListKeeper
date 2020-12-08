@@ -1,9 +1,10 @@
 import React, { useReducer, useEffect } from "react";
+import PropTypes from "prop-types";
 import { reducer, StoreContext } from "./reducer";
 
 // Responsible for creating the reducer
 // Made this file to create the reducer once the initial state is loaded
-export default (props) => {
+const ReducerProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, props.initialState);
 
   useEffect(async () => {
@@ -19,3 +20,5 @@ export default (props) => {
     </StoreContext.Provider>
   );
 };
+
+export default ReducerProvider;

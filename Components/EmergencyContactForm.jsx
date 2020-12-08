@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const EmergencyContactForm = ({ add }) => {
   const [text, setText] = useState("");
@@ -15,11 +16,16 @@ const EmergencyContactForm = ({ add }) => {
           add(text);
           setText("");
         }}
+        type="button"
       >
         Add
       </button>
     </div>
   );
+};
+
+EmergencyContactForm.propTypes = {
+  add: PropTypes.func.isRequired,
 };
 
 export default EmergencyContactForm;
