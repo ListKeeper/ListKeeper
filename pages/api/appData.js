@@ -1,5 +1,6 @@
 const url = require("url");
 const MongoClient = require("mongodb").MongoClient;
+const initialState = require("../../Reducers/reducer").initialState;
 
 // Create cached connection variable
 let cachedDb = null;
@@ -53,7 +54,7 @@ module.exports = async (req, res) => {
       { userId },
       { fields: { _id: 0, userId: 0 } }
     );
-    res.status(200).json(appData || { todos: [] });
+    res.status(200).json(appData || initialState);
   } else if (req.method === "PUT") {
     await appDataCollection.replaceOne(
       { userId },

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StoreContext } from "../Reducers/todo.reducer.js";
+import { StoreContext } from "../Reducers/reducer.js";
 import Todo from "../Components/Todo.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import styles from "../styles/Todo.module.css";

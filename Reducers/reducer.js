@@ -7,16 +7,7 @@ export const StoreContext = React.createContext(null);
 
 export const initialState = {
   counter: 2,
-  todos: [
-    {
-      id: 1,
-      text: "One",
-    },
-    {
-      id: 2,
-      text: "Two",
-    },
-  ],
+  todos: [],
 };
 
 export const reducer = (state, action) => {

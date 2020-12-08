@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-import { reducer, StoreContext } from "../Reducers/todo.reducer";
+import { reducer, StoreContext } from "./reducer";
 
 // Responsible for creating the reducer
 export default (props) => {
