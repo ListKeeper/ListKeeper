@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "next/link"
 
 function hiddenSettings() {
   return (
@@ -9,6 +10,7 @@ function hiddenSettings() {
   
       <button>Tutorial</button>
       <button>Emergency</button>
+      <Link href="/"><button>Back</button></Link>
     </div>
   )
 }
