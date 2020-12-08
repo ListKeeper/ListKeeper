@@ -16,11 +16,13 @@ const TodoApp = () => {
           <Todo
             key={t.id}
             todo={t}
-            remove={() => dispatch({ type: "remove", id: t.id })}
-            edit={(text) => dispatch({ type: "edit", id: t.id, text: text })}
+            remove={() => dispatch({ type: "remove-todo", id: t.id })}
+            edit={(text) =>
+              dispatch({ type: "edit-todo", id: t.id, text: text })
+            }
           />
         ))}
-        <AddTodo add={(text) => dispatch({ type: "add", text: text })} />
+        <AddTodo add={(text) => dispatch({ type: "add-todo", text: text })} />
       </div>
     </>
   );
