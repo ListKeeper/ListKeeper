@@ -18,6 +18,10 @@ export default function Home() {
           <h1 className={styles.title}>Welcome to ListKeeper!</h1>
  
           <div>
+          <div className={styles.tl} onClick={}>A</div>
+          <div className={styles.tr}>B</div>
+          <div className={styles.bl}>C</div>
+          <div className={styles.br}>D</div>
           <SecurityOutlinedIcon className={styles.shield} />
           </div>
           <div>
