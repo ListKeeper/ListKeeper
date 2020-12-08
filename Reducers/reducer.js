@@ -51,7 +51,12 @@ export const reducer = (state, action) => {
           ...state.settings,
           emergencyContacts: [
             ...state.settings.emergencyContacts,
-            { phoneNumber: action.payload.phoneNumber, id: uniqid() },
+            {
+              name: action.payload.name,
+              phoneNumber: action.payload.phoneNumber,
+              email: action.payload.email,
+              id: uniqid(),
+            },
           ],
         },
       };
@@ -62,7 +67,9 @@ export const reducer = (state, action) => {
       );
       const contact = {
         ...state.settings.emergencyContacts[idx],
+        name: action.payload.name,
         phoneNumber: action.payload.phoneNumber,
+        email: action.payload.email,
       };
       const emergencyContacts = [...state.settings.emergencyContacts];
       emergencyContacts.splice(idx, 1, contact);

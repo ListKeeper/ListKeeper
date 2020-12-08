@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddEmergencyContact = ({ add }) => {
+const EmergencyContactForm = ({ add }) => {
   const [text, setText] = useState("");
   return (
     <div className="AddEmergencyContact">
@@ -22,4 +22,4 @@ const AddEmergencyContact = ({ add }) => {
   );
 };
 
-export default AddEmergencyContact;
+export default EmergencyContactForm;

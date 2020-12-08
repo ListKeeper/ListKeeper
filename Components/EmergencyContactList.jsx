@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import AddEmergencyContact from "./AddEmergencyContact";
+import EmergencyContactForm from "./EmergencyContactForm";
 
 const EmergencyContact = ({ emergencyContact, remove, edit }) => {
   const [mode, setMode] = useState("list");
-  const [text, setText] = useState(emergencyContact.text);
+  const [contact, setContact] = useState(emergencyContact);
   return (
     <div>
       {mode === "list" ? (
         <>
-          <span className="EmergencyContactText">{emergencyContact.text}</span>
+          <span className="EmergencyContactText">
+            {emergencyContact.phoneNumber}
+          </span>
           <button className="RemoveEmergencyContact" onClick={remove}>
             Remove
           </button>

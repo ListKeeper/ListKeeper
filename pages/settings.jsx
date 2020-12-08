@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import { StoreContext } from "../Reducers/reducer.js";
-import EmergencyContact from "../Components/EmergencyContact";
-import AddEmergencyContact from "../Components/AddEmergencyContact";
+import { StoreContext } from "../Reducers/reducer";
+import EmergencyContact from "../Components/EmergencyContactList";
+import AddEmergencyContact from "../Components/EmergencyContactForm";
 import styles from "../styles/Todo.module.css";
 import Link from "next/link"
 
 // Any component can grab and use state & dispatch
 const Settings = () => {
   const { state, dispatch } = useContext(StoreContext);
-  console.log(state);
   return (
     <>
       <div className={styles.container}>
