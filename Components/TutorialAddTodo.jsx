@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -28,8 +28,13 @@ const AddTodo = ({ add }) => {
     { label: "Allclear", message: "I am okay, situation has resolved itself", phrase: 'Book Vacation' },
   ];
 
-
   const [text, setText] = useState("");
+  const [message, setMessage] = useState("")
+
+  const sendMessage = () => {
+    console.log(message)
+  }
+
   return (
 
     <div className="AddTodo">
@@ -45,6 +50,7 @@ const AddTodo = ({ add }) => {
           getOptionSelected={(option, value) => option.label === value.label}
           onChange={(e, value) => {
             setText(value.phrase)
+            setMessage(value.message)
           }}
           getOptionLabel={(option) => option.label}
           style={{ width: 300 }}
@@ -56,6 +62,7 @@ const AddTodo = ({ add }) => {
         className="AddTodoButton"
         onClick={() => {
           add(text);
+          sendMessage()
           setText("");
         }}
         type="button"

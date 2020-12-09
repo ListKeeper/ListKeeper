@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState, useEffect } from "react";
+import React, {useReducer, useState, useEffect } from "react";
 import { initialState, reducer } from "../Reducers/TutorialReducer.js";
 import Link from "next/link";
 import TutorialAddTodo from "../Components/TutorialAddTodo"
@@ -6,8 +6,6 @@ import styles from "../styles/Tutorial.module.css";
 import TutorialTodo from '../Components/TutorialTodo';
 
 const tutorial = () => {
-
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
