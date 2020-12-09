@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const EmergencyContactForm = ({ add }) => {
-  const [text, setText] = useState("");
+const EmergencyContactForm = ({ onSubmit, emergencyContact }) => {
+  const [formData, setFormData] = useState(emergencyContact || {});
   return (
     <div className="AddEmergencyContact">
       <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        className="AddEmergencyContactInput"
+        value={formData.name || ""}
+        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+      />
+      <input
+        value={formData.phoneNumber || ""}
+        onChange={(e) =>
+          setFormData({ ...formData, phoneNumber: e.target.value })
+        }
+      />
+      <input
+        value={formData.email || ""}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
       />
       <button
-        className="AddEmergencyContactButton"
         onClick={() => {
-          add(text);
-          setText("");
+          onSubmit(formData);
+          setFormData(emergencyContact || {});
         }}
         type="button"
       >
@@ -25,7 +33,13 @@ const EmergencyContactForm = ({ add }) => {
 };
 
 EmergencyContactForm.propTypes = {
-  add: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  emergencyContact: PropTypes.shape({
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    email: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
 };
 
 export default EmergencyContactForm;

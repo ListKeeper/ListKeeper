@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../Reducers/reducer";
-import EmergencyContact from "../Components/EmergencyContactList";
-import AddEmergencyContact from "../Components/EmergencyContactForm";
+import EmergencyContact from "../Components/EmergencyContact";
+import EmergencyContactForm from "../Components/EmergencyContactForm";
 import styles from "../styles/Todo.module.css";
 import Link from "next/link"
 
@@ -19,17 +19,17 @@ const Settings = () => {
             remove={() =>
               dispatch({ type: "remove-contact", payload: { id: c.id } })
             }
-            edit={(phoneNumber) =>
+            edit={(emergencyContact) =>
               dispatch({
                 type: "edit-contact",
-                payload: { id: c.id, phoneNumber },
+                payload: emergencyContact,
               })
             }
           />
         ))}
-        <AddEmergencyContact
-          add={(phoneNumber) =>
-            dispatch({ type: "add-contact", payload: { phoneNumber } })
+        <EmergencyContactForm
+          onSubmit={(emergencyContact) =>
+            dispatch({ type: "add-contact", payload: emergencyContact })
           }
         />
       </div>

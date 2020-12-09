@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Todo = ({ todo, remove, edit }) => {
   const [mode, setMode] = useState("list");
@@ -8,10 +9,14 @@ const Todo = ({ todo, remove, edit }) => {
       {mode === "list" ? (
         <>
           <span className="TodoText">{todo.text}</span>
-          <button className="RemoveTodo" onClick={remove}>
+          <button className="RemoveTodo" onClick={remove} type="button">
             Remove
           </button>
-          <button className="EditTodo" onClick={() => setMode("edit")}>
+          <button
+            className="EditTodo"
+            onClick={() => setMode("edit")}
+            type="button"
+          >
             Edit
           </button>
         </>
@@ -28,16 +33,29 @@ const Todo = ({ todo, remove, edit }) => {
               edit(text);
               setMode("list");
             }}
+            type="button"
           >
             Save
           </button>
-          <button className="EditTodoCancel" onClick={() => setMode("list")}>
+          <button
+            className="EditTodoCancel"
+            onClick={() => setMode("list")}
+            type="button"
+          >
             Cancel
           </button>
         </>
       )}
     </div>
   );
+};
+
+Todo.propTypes = {
+  todo: PropTypes.shape({
+    text: PropTypes.string,
+  }).isRequired,
+  remove: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
 };
 
 export default Todo;

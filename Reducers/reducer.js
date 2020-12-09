@@ -32,7 +32,7 @@ export const reducer = (state, action) => {
       todos.splice(idx, 1, todo);
       return {
         ...state,
-        todos: todos,
+        todos,
       };
     }
     case "remove-todo": {
@@ -41,7 +41,7 @@ export const reducer = (state, action) => {
       todos.splice(idx, 1);
       return {
         ...state,
-        todos: todos,
+        todos,
       };
     }
     case "add-contact": {
