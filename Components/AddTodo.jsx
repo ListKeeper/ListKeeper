@@ -30,14 +30,10 @@ const AddTodo = ({ add }) => {
 
 
   const [text, setText] = useState("");
+  const [message, setMessage] = useState("")
   return (
 
     <div className="AddTodo">
-      {/* <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        className="AddTodoInput"
-      /> */}
       <Autocomplete
           disablePortal
           id="combo-box-demo"

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState, useEffect } from "react";
+import React, {useReducer, useState, useEffect } from "react";
 import { initialState, reducer } from "../Reducers/TutorialReducer.js";
 import Link from "next/link";
 import TutorialAddTodo from "../Components/TutorialAddTodo"
@@ -6,8 +6,6 @@ import styles from "../styles/Tutorial.module.css";
 import TutorialTodo from '../Components/TutorialTodo';
 
 const tutorial = () => {
-
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -27,17 +25,6 @@ const tutorial = () => {
           />
         ))}
         <TutorialAddTodo add={text => dispatch({type: "add", text: text})} />
-
-        {/* <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={data}
-          getOptionLabel={(option) => option.label}
-          style={{ width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Input Command" />
-          )}
-        /> */}
 
         <div>
           <Link href="/hiddenSettings">

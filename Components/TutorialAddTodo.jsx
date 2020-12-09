@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import styles from "../styles/Tutorial.module.css";
 
 const AddTodo = ({ add }) => {
   const data = [
@@ -28,8 +29,29 @@ const AddTodo = ({ add }) => {
     { label: "Allclear", message: "I am okay, situation has resolved itself", phrase: 'Book Vacation' },
   ];
 
-
   const [text, setText] = useState("");
+  const [message, setMessage] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [longitude, setLongitude] = useState("")
+  const [hasSent, setHasSent] = useState(false)
+  
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude)
+      setLongitude(position.coords.longitude)
+    })
+
+  }, [latitude, longitude])
+
+  // setLatitude(position.coords.setLatitude)
+  // setLongitude(position.coords.setLongitude)
+
+  const sendMessage = () => {
+    console.log(message)
+    setHasSent(true)
+  }
+
   return (
 
     <div className="AddTodo">
@@ -45,6 +67,8 @@ const AddTodo = ({ add }) => {
           getOptionSelected={(option, value) => option.label === value.label}
           onChange={(e, value) => {
             setText(value.phrase)
+            setMessage(value.message)
+            setHasSent(false)
           }}
           getOptionLabel={(option) => option.label}
           style={{ width: 300 }}
@@ -56,12 +80,16 @@ const AddTodo = ({ add }) => {
         className="AddTodoButton"
         onClick={() => {
           add(text);
+          sendMessage()
           setText("");
         }}
         type="button"
       >
         Add
       </button>
+      <p>{latitude}</p>
+      <p>{longitude}</p>
+      <p id="message">{hasSent ? message : null}</p>
     </div>
   );
 };
