@@ -1,6 +1,6 @@
 const url = require("url");
-const MongoClient = require("mongodb").MongoClient;
-const initialState = require("../../Reducers/reducer").initialState;
+const { MongoClient } = require("mongodb");
+const { initialState } = require("../../Reducers/reducer").initialState;
 
 // Create cached connection variable
 let cachedDb = null;
@@ -31,14 +31,16 @@ module.exports = async (req, res) => {
   const db = await connectToDatabase(process.env.MONGODB_URI);
   const sessionToken = req.cookies["next-auth.session-token"];
 
+  // error handling: Guard clause
   if (!sessionToken) {
-    return res.status(401).json({});
+    res.status(401).json({});
+    return;
   }
 
   const sessionsCollection = await db.collection("sessions");
 
   const session = await sessionsCollection.findOne({ sessionToken });
-  const userId = session.userId;
+  const { userId } = session;
 
   const appDataCollection = await db.collection("appData");
 
