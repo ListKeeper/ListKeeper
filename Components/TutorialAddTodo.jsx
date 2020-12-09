@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Geolocation from 'react-native-geolocation-service';
 
 const AddTodo = ({ add }) => {
   const data = [
@@ -57,7 +58,16 @@ console.log('latitude:', latitude, 'longitude:', longitude)
   
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success, error, options);
+      Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+          },
+          (error) => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
   }, [])
 
   // setLatitude(position.coords.setLatitude)
