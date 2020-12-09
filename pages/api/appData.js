@@ -1,5 +1,6 @@
 const url = require("url");
 const { MongoClient } = require("mongodb");
+const { getSession } = require("next-auth/client");
 const { initialState } = require("../../Reducers/reducer").initialState;
 
 // Create cached connection variable
@@ -29,18 +30,20 @@ async function connectToDatabase(uri) {
 // & gets/updates their appData
 module.exports = async (req, res) => {
   const db = await connectToDatabase(process.env.MONGODB_URI);
-  const sessionToken = req.cookies["next-auth.session-token"];
+  // const sessionToken = req.cookies["next-auth.session-token"];
+  const session = await getSession({ req });
 
   // error handling: Guard clause
-  if (!sessionToken) {
+  if (!session) {
     res.status(401).json({});
     return;
   }
 
   const sessionsCollection = await db.collection("sessions");
 
-  const session = await sessionsCollection.findOne({ sessionToken });
-  const { userId } = session;
+  const { userId } = await sessionsCollection.findOne({
+    accessToken: session.accessToken,
+  });
 
   const appDataCollection = await db.collection("appData");
 
