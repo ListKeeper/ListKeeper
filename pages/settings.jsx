@@ -1,41 +1,42 @@
 import React, { useContext } from "react";
-import { StoreContext } from "../Reducers/reducer.js";
-import Todo from "../Components/Todo.jsx";
-import AddTodo from "../Components/AddTodo.jsx";
+import Link from "next/link";
+import { StoreContext } from "../Reducers/reducer";
+import EmergencyContact from "../Components/EmergencyContact";
+import EmergencyContactForm from "../Components/EmergencyContactForm";
 import styles from "../styles/Todo.module.css";
-import Link from "next/link"
 
 // Any component can grab and use state & dispatch
 const Settings = () => {
   const { state, dispatch } = useContext(StoreContext);
-  console.log(state);
   return (
     <>
       <div className={styles.container}>
         <h1>Settings</h1>
         {state.settings.emergencyContacts.map((c) => (
-          <Todo
+          <EmergencyContact
             key={c.id}
-            todo={c}
+            emergencyContact={c}
             remove={() =>
               dispatch({ type: "remove-contact", payload: { id: c.id } })
             }
-            edit={(phoneNumber) =>
+            edit={(emergencyContact) =>
               dispatch({
                 type: "edit-contact",
-                payload: { id: c.id, phoneNumber },
+                payload: emergencyContact,
               })
             }
           />
         ))}
-        <AddTodo
-          add={(phoneNumber) =>
-            dispatch({ type: "add-contact", payload: { phoneNumber } })
+        <EmergencyContactForm
+          onSubmit={(emergencyContact) =>
+            dispatch({ type: "add-contact", payload: emergencyContact })
           }
         />
       </div>
       <div>
-      <Link href="/"><button>Back</button></Link>
+        <Link href="/">
+          <button type="button">Back</button>
+        </Link>
       </div>
     </>
   );
