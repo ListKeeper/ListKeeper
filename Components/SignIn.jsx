@@ -70,6 +70,10 @@ export default function SignIn() {
           <ThemeProvider theme={logOutTheme}>
             <Button><Link href="/todo">Todo List</Link></Button>
           </ThemeProvider>
+          <ThemeProvider theme={logOutTheme}>
+          <br />
+            <Button><Link href="/settings">Settings</Link></Button>
+          </ThemeProvider>
         </>
       )}
     </p>
