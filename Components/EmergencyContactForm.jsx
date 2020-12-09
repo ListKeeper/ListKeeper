@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+// Create new or edit emergency contact info
 const EmergencyContactForm = ({ onSubmit, emergencyContact }) => {
   const [formData, setFormData] = useState(emergencyContact || {});
   return (

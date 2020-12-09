@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
+// not specifying prop types in this file. Nextjs is already doing that
 import "../styles/globals.css";
 import { Provider } from "next-auth/client";
 import React, { useState, useEffect } from "react";
