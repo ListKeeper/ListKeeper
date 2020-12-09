@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Geolocation from 'react-native-geolocation-service';
+import styles from "../styles/Tutorial.module.css";
 
 const AddTodo = ({ add }) => {
   const data = [
@@ -33,48 +33,23 @@ const AddTodo = ({ add }) => {
   const [message, setMessage] = useState("")
   const [latitude, setLatitude] = useState("")
   const [longitude, setLongitude] = useState("")
-
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-  
-  const success = (pos) => {
-    let crd = pos.coords;
-    setLatitude(pos.coords.latitude)
-    setLongitude(pos.coords.longitude);
-console.log('latitude:', latitude, 'longitude:', longitude)
-  
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-  }
-  
-  const error = (err) => {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+  const [hasSent, setHasSent] = useState(false)
   
 
   useEffect(() => {
-      Geolocation.getCurrentPosition(
-          (position) => {
-            console.log(position);
-          },
-          (error) => {
-            // See error code charts below.
-            console.log(error.code, error.message);
-          },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-      );
-  }, [])
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude)
+      setLongitude(position.coords.longitude)
+    })
+
+  }, [latitude, longitude])
 
   // setLatitude(position.coords.setLatitude)
   // setLongitude(position.coords.setLongitude)
 
   const sendMessage = () => {
     console.log(message)
+    setHasSent(true)
   }
 
   return (
@@ -93,6 +68,7 @@ console.log('latitude:', latitude, 'longitude:', longitude)
           onChange={(e, value) => {
             setText(value.phrase)
             setMessage(value.message)
+            setHasSent(false)
           }}
           getOptionLabel={(option) => option.label}
           style={{ width: 300 }}
@@ -113,6 +89,7 @@ console.log('latitude:', latitude, 'longitude:', longitude)
       </button>
       <p>{latitude}</p>
       <p>{longitude}</p>
+      <p id="message">{hasSent ? message : null}</p>
     </div>
   );
 };
