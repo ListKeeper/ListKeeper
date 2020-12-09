@@ -1,17 +1,51 @@
-import React from 'react'
-import Styles from "../styles/Tutorial.module.css"
-import { Button } from "@material-ui/core";
-import Link from "next/link"
+import React, { useContext, useReducer, useState, useEffect } from "react";
+import { initialState, reducer } from "../Reducers/TutorialReducer.js";
+import Link from "next/link";
+import TutorialAddTodo from "../Components/TutorialAddTodo"
+import styles from "../styles/Tutorial.module.css";
+import TutorialTodo from '../Components/TutorialTodo';
 
-function tutorial() {
+const tutorial = () => {
+
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div>
-    <div>
-      Tutorial
-    </div>
-    <Button><Link href="/hiddenSettings">Back</Link></Button>
-    </div>
-  )
-}
+    <>
+      <div>
+        <div>Tutorial</div>
+      </div>
 
-export default tutorial
+      <div className={styles.container}>
+        <h1>Todos (Tutorial)</h1>
+        {state.todos.map((t) => (
+          <TutorialTodo
+            key={t.id}
+            todo={t}
+            remove={() => dispatch({type: "remove", id: t.id})}
+            edit={text => dispatch({type: "edit", id: t.id, text: text})}
+          />
+        ))}
+        <TutorialAddTodo add={text => dispatch({type: "add", text: text})} />
+
+        {/* <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={data}
+          getOptionLabel={(option) => option.label}
+          style={{ width: 300 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Input Command" />
+          )}
+        /> */}
+
+        <div>
+          <Link href="/hiddenSettings">
+            <button>Back</button>
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+};
+export default tutorial;

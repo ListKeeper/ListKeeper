@@ -8,16 +8,19 @@ const EmergencyContactForm = ({ onSubmit, emergencyContact }) => {
     <div className="AddEmergencyContact">
       <input
         value={formData.name || ""}
+        placeholder="name"
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
       />
       <input
         value={formData.phoneNumber || ""}
+        placeholder="phone number"
         onChange={(e) =>
           setFormData({ ...formData, phoneNumber: e.target.value })
         }
       />
       <input
         value={formData.email || ""}
+        placeholder="email"
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
       />
       <button
