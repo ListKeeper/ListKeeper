@@ -33,13 +33,32 @@ const AddTodo = ({ add }) => {
   const [latitude, setLatitude] = useState("")
   const [longitude, setLongitude] = useState("")
 
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  
+  const success = (pos) => {
+    let crd = pos.coords;
+    setLatitude(pos.coords.latitude)
+    setLongitude(pos.coords.longitude);
+console.log('latitude:', latitude, 'longitude:', longitude)
+  
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+  }
+  
+  const error = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude);
-    console.log('latitude:', latitude, 'longitude:', longitude)
-    });
-  }, [latitude, longitude])
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }, [])
 
   // setLatitude(position.coords.setLatitude)
   // setLongitude(position.coords.setLongitude)
@@ -82,6 +101,8 @@ const AddTodo = ({ add }) => {
       >
         Add
       </button>
+      <p>{latitude}</p>
+      <p>{longitude}</p>
     </div>
   );
 };
