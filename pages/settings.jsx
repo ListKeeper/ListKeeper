@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
+import Link from "next/link";
 import { StoreContext } from "../Reducers/reducer";
 import EmergencyContact from "../Components/EmergencyContact";
 import EmergencyContactForm from "../Components/EmergencyContactForm";
 import styles from "../styles/Todo.module.css";
-import Link from "next/link"
 
 // Any component can grab and use state & dispatch
 const Settings = () => {
@@ -34,7 +34,9 @@ const Settings = () => {
         />
       </div>
       <div>
-      <Link href="/"><button>Back</button></Link>
+        <Link href="/">
+          <button type="button">Back</button>
+        </Link>
       </div>
     </>
   );
