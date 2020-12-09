@@ -30,6 +30,19 @@ const AddTodo = ({ add }) => {
 
   const [text, setText] = useState("");
   const [message, setMessage] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [longitude, setLongitude] = useState("")
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude);
+    console.log('latitude:', latitude, 'longitude:', longitude)
+    });
+  }, [latitude, longitude])
+
+  // setLatitude(position.coords.setLatitude)
+  // setLongitude(position.coords.setLongitude)
 
   const sendMessage = () => {
     console.log(message)
