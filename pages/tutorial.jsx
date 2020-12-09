@@ -55,6 +55,7 @@ const tutorial = () => {
             }
           />
         ))}
+        <AddTodo add={(text) => dispatch({ type: "add-todo", text: text })} />
 
         <Autocomplete
           disablePortal
