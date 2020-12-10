@@ -1,6 +1,8 @@
 ## About
 
 ListKeeper is a safety app disguised as an unsuspecting todo list app for when you find yourself in a dangerous situation. Think of ListKeeper as the virtual "Angel Shot" giving you the ability to stealthily send a coded message to those you most trust.
+This project was built for the MintBean Social Justice Hackathon from December 4-10 2020
+Contributors: [Nicole Woodcock](https://github.com/npwxx) and [Andrew Loyd](https://github.com/AndrewRLloyd88)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
