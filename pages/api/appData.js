@@ -1,7 +1,7 @@
 const url = require("url");
 const { MongoClient } = require("mongodb");
 const { getSession } = require("next-auth/client");
-const { initialState } = require("../../Reducers/reducer").initialState;
+const { initialState } = require("../../Reducers/reducer");
 
 // Create cached connection variable
 let cachedDb = null;
