@@ -1,10 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { useSession, signin, signout } from "next-auth/client";
 import { StoreContext } from "../Reducers/reducer";
 import EmergencyContact from "../Components/EmergencyContact";
 import EmergencyContactForm from "../Components/EmergencyContactForm";
 
 function hiddenSettings() {
+  const [session] = useSession()
+  const [userName, setUsername] = useState("")
+
+ const getName = () => {
+  setUsername(session.user.name)
+ }
+
+  useEffect(() => {
+    if(session !== undefined){
+      getName()
+    }
+  }, [session])
+
+
   const { state, dispatch } = useContext(StoreContext);
   return (
     <div>
@@ -21,6 +36,9 @@ function hiddenSettings() {
         need immediate help you can always access this secret menu and get
         connected to 911 via the Emergency button{" "}
       </p>
+     
+
+      <h2>{userName + "'s Trusted Contacts"}</h2>
       {state.settings.emergencyContacts.map((c) => (
         <EmergencyContact
           key={c.id}

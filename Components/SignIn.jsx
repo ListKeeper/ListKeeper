@@ -47,7 +47,7 @@ const loggedInTheme = createMuiTheme({
 
 export default function SignIn() {
   const [session] = useSession();
-
+  
   return (
     <p className={styles.container}>
       {!session && (
