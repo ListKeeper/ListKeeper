@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import styles from "../styles/Tutorial.module.css";
+import styles from "../styles/Todo.module.css";
 import { useSession, signin, signout } from "next-auth/client";
 
 const AddTodo = ({ add }) => {
@@ -67,21 +67,23 @@ const AddTodo = ({ add }) => {
 
   return (
 
-    <div className="AddTodo">
+    <div className={styles.container}>
       <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={data}
           getOptionSelected={(option, value) => option.label === value.label}
           onChange={(e, value) => {
+            if(value){
             setText(value.phrase)
             setMessage(value.message)
             setHasSent(false)
+            }
           }}
           getOptionLabel={(option) => option.label}
           style={{ width: 300 }}
           renderInput={(params) => (
-            <TextField {...params} label="Input Command" />
+            <TextField {...params} label="Add Your Todo Here" />
           )}
         />
       <button
