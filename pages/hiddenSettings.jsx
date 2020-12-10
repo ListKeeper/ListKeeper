@@ -24,22 +24,30 @@ function hiddenSettings() {
   const { state, dispatch } = useContext(StoreContext);
   return (
     <div className={styles.container}>
+    <h2 className={styles.h2}>ListKeeper Will Keep You Safe!</h2>
+    <div className={styles.appinfo}>
       <p>
-        ListKeeper is disguised as an unsuspecting todo list app so if you are
-        in a dangerous situation and you need to be stealthy in calling for
-        help, ListKeeper can keep you safe.{" "}
-      </p>
+        ListKeeper is disguised as an unsuspecting todo list app for when you find yourself in a dangerous situation.  </p>
 
-      <p>
-        When you input a todo on ListKeeper the search bar will autocomplete
-        into a known phrase e.g. Help. When you press the ADD button listKeeper
-        sends a coded message to your trusted contacts via SMS and Email. If you
-        need immediate help you can always access this secret menu and get
-        connected to 911 via the Emergency button{" "}
-      </p>
+        <p>Think of ListKeeper as the virtual "Angel Shot" giving you the ability to stealthily send a coded message to those you most trust.</p>
+
+        <p><b>To use ListKeeper:</b></p>
+
+        <p>Add some trusted contacts below, a name, email and cell number are required.</p>
+
+        <p>On the main menu choose the TODO LIST option.</p>
+
+        <p>Look for an appropriate word that matches your situation. Press the ADD button. </p>
+
+        <p>Your trusted contacts will receive your message and location via text and email.</p>
+
+        <p>Don't forget to send an Allclear when the danger has passed.</p>
+
+        <p>It's as simple as that!</p>
+        </div>
      
 
-      <h2>{userName + "'s Trusted Contacts"}</h2>
+      <h2 className={styles.h2}>{userName + "'s Trusted Contacts"}</h2>
       <p>Please add contacts here that you trust in real life. When you press the ADD button on a list they will immediately recieve a message. You can go to the tutorial menu to see how this works.</p>
       <div className={styles.contacts}>
       {state.settings.emergencyContacts.map((c) => (
@@ -67,7 +75,6 @@ function hiddenSettings() {
       <Link href="/tutorial">
         <button type="button">Tutorial</button>
       </Link>
-      <button type="button">Emergency</button>
       <Link href="/">
         <button type="button">Back</button>
       </Link>
