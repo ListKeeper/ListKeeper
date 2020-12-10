@@ -40,12 +40,14 @@ const AddTodo = ({ add }) => {
           options={data}
           getOptionSelected={(option, value) => option.label === value.label}
           onChange={(e, value) => {
+            if(value){
             setText(value.phrase)
+            }
           }}
           getOptionLabel={(option) => option.label}
           style={{ width: 300 }}
           renderInput={(params) => (
-            <TextField {...params} label="Input Command" />
+            <TextField {...params} label="Add your Todo Here" />
           )}
         />
       <button

@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.buttons {
+  margin-top: 40px;
+}
+
+.contacts {
+  border: 1px solid black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.table {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.contacts * {
+  margin: 0 10px;
+}
+
+.contacts * {
+  display: flex;
+  justify-content: space-evenly;
+}

@@ -1,7 +1,6 @@
 export const initialState = {
-  counter: 2,
-  todos: [{
-  }],
+  counter: 0,
+  todos: [],
 };
 
 export const reducer = (state, action) => {

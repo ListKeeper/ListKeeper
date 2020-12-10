@@ -1,4 +1,5 @@
 import React, {useReducer, useState, useEffect } from "react";
+import { useSession, signin, signout } from "next-auth/client";
 import { initialState, reducer } from "../Reducers/TutorialReducer.js";
 import Link from "next/link";
 import TutorialAddTodo from "../Components/TutorialAddTodo"
@@ -6,16 +7,26 @@ import styles from "../styles/Tutorial.module.css";
 import TutorialTodo from '../Components/TutorialTodo';
 
 const tutorial = () => {
+  const [session] = useSession()
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [userName, setUsername] = useState("")
+
+  const getName = () => {
+   setUsername(session.user.name)
+  }
+ 
+   useEffect(() => {
+     if(session !== undefined){
+       getName()
+     }
+   }, [session])
+ 
 
   return (
     <>
-      <div>
-        <div>Tutorial</div>
-      </div>
-
+    <div>
       <div className={styles.container}>
-        <h1>Todos (Tutorial)</h1>
+        <h1>{userName}'s Todos (Tutorial)</h1>
         {state.todos.map((t) => (
           <TutorialTodo
             key={t.id}
@@ -31,6 +42,7 @@ const tutorial = () => {
             <button>Back</button>
           </Link>
         </div>
+      </div>
       </div>
     </>
   );
