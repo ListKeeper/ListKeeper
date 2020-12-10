@@ -10,9 +10,6 @@ const tutorial = () => {
 
   return (
     <>
-      <div>
-        <div>Tutorial</div>
-      </div>
 
       <div className={styles.container}>
         <h1>Todos (Tutorial)</h1>
