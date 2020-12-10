@@ -1,25 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { useSession, signin, signout } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import { StoreContext } from "../Reducers/reducer";
 import EmergencyContact from "../Components/EmergencyContact";
 import EmergencyContactForm from "../Components/EmergencyContactForm";
 import styles from "../styles/Hidden.module.css";
 
 function hiddenSettings() {
-  const [session] = useSession()
-  const [userName, setUsername] = useState("")
+  const [session] = useSession();
+  const [userName, setUsername] = useState("");
 
- const getName = () => {
-  setUsername(session.user.name)
- }
+  const getName = () => {
+    setUsername(session.user.name);
+  };
 
   useEffect(() => {
-    if(session !== undefined){
-      getName()
+    if (session !== undefined) {
+      getName();
     }
-  }, [session])
-
+  }, [session]);
 
   const { state, dispatch } = useContext(StoreContext);
   return (
@@ -50,21 +49,21 @@ function hiddenSettings() {
       <h2 className={styles.h2}>{userName + "'s Trusted Contacts"}</h2>
       <p>Please add contacts here that you trust in real life. When you press the ADD button on a list they will immediately recieve a message. You can go to the tutorial menu to see how this works.</p>
       <div className={styles.contacts}>
-      {state.settings.emergencyContacts.map((c) => (
-        <EmergencyContact
-          key={c.id}
-          emergencyContact={c}
-          remove={() =>
-            dispatch({ type: "remove-contact", payload: { id: c.id } })
-          }
-          edit={(emergencyContact) =>
-            dispatch({
-              type: "edit-contact",
-              payload: emergencyContact,
-            })
-          }
-        />
-      ))}
+        {state.settings.emergencyContacts.map((c) => (
+          <EmergencyContact
+            key={c.id}
+            emergencyContact={c}
+            remove={() =>
+              dispatch({ type: "remove-contact", payload: { id: c.id } })
+            }
+            edit={(emergencyContact) =>
+              dispatch({
+                type: "edit-contact",
+                payload: emergencyContact,
+              })
+            }
+          />
+        ))}
       </div>
       <EmergencyContactForm
         onSubmit={(emergencyContact) =>
