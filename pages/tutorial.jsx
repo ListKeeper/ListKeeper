@@ -4,7 +4,6 @@ import Link from "next/link";
 import TutorialAddTodo from "../Components/TutorialAddTodo"
 import styles from "../styles/Tutorial.module.css";
 import TutorialTodo from '../Components/TutorialTodo';
-import { useSession, signin, signout } from "next-auth/client";
 
 const tutorial = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
