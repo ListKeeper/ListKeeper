@@ -3,8 +3,24 @@ import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import styles from "../styles/Tutorial.module.css";
+import { useSession, signin, signout } from "next-auth/client";
 
 const AddTodo = ({ add }) => {
+  const [session] = useSession()
+  const [userName, setUsername] = useState("")
+
+  const getName = () => {
+    setUsername(session.user.name)
+  }
+
+  useEffect(() => {
+    if(session !== undefined){
+      getName()
+    }
+  }, [session])
+
+
+
   const data = [
     {
       label: "Help",
@@ -19,7 +35,7 @@ const AddTodo = ({ add }) => {
     {
       label: "Escalating",
       message:
-        "There is a situation with more or one people and it is escalating.", phrase: 'Clean Bathroom'
+        "I presently at an escalating situation with one or more people. I need some help.", phrase: 'Clean Bathroom'
     },
     {
       label: "Threatened",
@@ -46,6 +62,8 @@ const AddTodo = ({ add }) => {
 
   // setLatitude(position.coords.setLatitude)
   // setLongitude(position.coords.setLongitude)
+
+  
 
   const sendMessage = () => {
     console.log(message)
@@ -89,7 +107,7 @@ const AddTodo = ({ add }) => {
       </button>
       <p>{latitude}</p>
       <p>{longitude}</p>
-      <p id="message">{hasSent ? message : null}</p>
+      <p id="message">{hasSent ? "This is a message sent from the ListKeeper App on Behalf of " + userName + ". " + message + " I am at " + `https://www.google.com/maps/search/${latitude},${longitude}` +  " (Accurate to 1800m)" : null}</p>
     </div>
   );
 };
