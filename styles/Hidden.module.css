@@ -8,6 +8,7 @@
 
 .buttons {
   margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .contacts {
@@ -33,4 +34,12 @@
 .contacts * {
   display: flex;
   justify-content: space-evenly;
+}
+
+.appinfo {
+  margin-bottom: 5px;
+}
+
+.h2 {
+  margin: 5px 0;
 }
