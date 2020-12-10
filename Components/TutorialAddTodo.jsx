@@ -60,24 +60,14 @@ const AddTodo = ({ add }) => {
 
   }, [latitude, longitude])
 
-  // setLatitude(position.coords.setLatitude)
-  // setLongitude(position.coords.setLongitude)
-
-  
 
   const sendMessage = () => {
-    console.log(message)
     setHasSent(true)
   }
 
   return (
 
     <div className="AddTodo">
-      {/* <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        className="AddTodoInput"
-      /> */}
       <Autocomplete
           disablePortal
           id="combo-box-demo"
