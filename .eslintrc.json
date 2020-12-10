@@ -6,7 +6,8 @@
   "extends": ["airbnb", "prettier", "prettier/react"],
   "plugins": ["react", "jest"],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-restricted-syntax": "off"
   },
   "globals": {
     "React": "writable"
