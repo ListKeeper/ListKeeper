@@ -37,11 +37,6 @@ const tutorial = () => {
         ))}
         <TutorialAddTodo add={text => dispatch({type: "add", text: text})} />
 
-        <div>
-          <Link href="/hiddenSettings">
-            <button>Back</button>
-          </Link>
-        </div>
       </div>
       </div>
     </>

@@ -5,3 +5,110 @@
   margin: 0 auto;
   align-items: center;
 }
+
+.arrow {
+  color: red;
+  animation: MoveUpDown 1s linear infinite;
+}
+
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes MoveLeftRight {
+  0%,
+  100% {
+    transform: translatex(-10px);
+  }
+  50% {
+    transform: translatex(20px);
+  }
+}
+
+.step1 {
+  display: flex;
+}
+
+.step2 {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.button {
+  display: flex;
+}
+
+.arrowlr {
+  color: red;
+  animation: MoveLeftRight 1s linear infinite;
+  margin-right: 300px;
+}
+
+.step3 {
+}
+/* .AddTodoButton {
+  margin-left: 200px;
+} */
+
+.buttonflex {
+  margin: 0 auto;
+}
+
+.step3text {
+  /* width: 50%; */
+}
+
+.displaynone {
+  display: none;
+}
+
+.step4 {
+  margin-top: 40 0;
+}
+
+.phone {
+  width: 300px;
+  height: 500px;
+  z-index: -30;
+}
+
+.white {
+  margin-top: -400px;
+  width: 250px;
+  height: 300px;
+  background-color: white;
+  z-index: -2;
+}
+
+.messageresult {
+  z-index: -1;
+  width: 200px;
+  word-wrap: break-word;
+  margin-top: -250px;
+}
+
+.backButton {
+  margin-top: 60px;
+  margin-bottom: 10px;
+}
+
+.backbuttonb44 {
+  margin-top: 250px;
+  margin-bottom: 10px;
+}
+
+.aboutinfo {
+  margin-top: 200px;
+  margin-bottom: 10px;
+}
