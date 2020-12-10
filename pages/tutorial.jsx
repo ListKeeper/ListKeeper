@@ -1,43 +1,41 @@
-import React, {useReducer, useState, useEffect } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import { useSession, signin, signout } from "next-auth/client";
-import { initialState, reducer } from "../Reducers/TutorialReducer.js";
 import Link from "next/link";
-import TutorialAddTodo from "../Components/TutorialAddTodo"
+import { initialState, reducer } from "../Reducers/TutorialReducer";
+import TutorialAddTodo from "../Components/TutorialAddTodo";
 import styles from "../styles/Tutorial.module.css";
-import TutorialTodo from '../Components/TutorialTodo';
+import TutorialTodo from "../Components/TutorialTodo";
 
 const tutorial = () => {
-  const [session] = useSession()
+  const [session] = useSession();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [userName, setUsername] = useState("")
+  const [userName, setUsername] = useState("");
 
   const getName = () => {
-   setUsername(session.user.name)
-  }
- 
-   useEffect(() => {
-     if(session !== undefined){
-       getName()
-     }
-   }, [session])
- 
+    setUsername(session.user.name);
+  };
+
+  useEffect(() => {
+    if (session !== undefined) {
+      getName();
+    }
+  }, [session]);
 
   return (
     <>
-    <div>
-      <div className={styles.container}>
-        <h1>{userName}'s Todos (Tutorial)</h1>
-        {state.todos.map((t) => (
-          <TutorialTodo
-            key={t.id}
-            todo={t}
-            remove={() => dispatch({type: "remove", id: t.id})}
-            edit={text => dispatch({type: "edit", id: t.id, text: text})}
-          />
-        ))}
-        <TutorialAddTodo add={text => dispatch({type: "add", text: text})} />
-
-      </div>
+      <div>
+        <div className={styles.container}>
+          <h1>{userName}'s Todos (Tutorial)</h1>
+          {state.todos.map((t) => (
+            <TutorialTodo
+              key={t.id}
+              todo={t}
+              remove={() => dispatch({ type: "remove", id: t.id })}
+              edit={(text) => dispatch({ type: "edit", id: t.id, text })}
+            />
+          ))}
+          <TutorialAddTodo add={(text) => dispatch({ type: "add", text })} />
+        </div>
       </div>
     </>
   );
