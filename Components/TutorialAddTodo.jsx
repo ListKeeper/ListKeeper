@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useSession, signin, signout } from "next-auth/client";
-<<<<<<< HEAD
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from "next/link";
+import styles from "../styles/Todo.module.css";
 
 const AddTodo = ({ add }) => {
   const [session] = useSession()
@@ -16,13 +16,6 @@ const AddTodo = ({ add }) => {
   const [showStep2, setShowStep2] = useState(false)
   const [showStep3, setShowStep3] = useState(false)
   const [showStep4, setShowStep4] = useState(false)
-=======
-import styles from "../styles/Todo.module.css";
-
-const AddTodo = ({ add }) => {
-  const [session] = useSession();
-  const [userName, setUsername] = useState("");
->>>>>>> main
 
   const getName = () => {
     setUsername(session.user.name);
@@ -92,15 +85,11 @@ const AddTodo = ({ add }) => {
   };
 
   return (
-<<<<<<< HEAD
     <>
     <div className={showStep2 ? styles.step2 : styles.hide}>You can type to enter a coded message or scroll down to find an appropriate message for your sitation <ArrowDownwardIcon className={styles.arrow} /></div>
-=======
->>>>>>> main
     <div className={styles.container}>
     <div>
       <Autocomplete
-<<<<<<< HEAD
           disablePortal
           id="combo-box-demo"
           options={data}
@@ -131,43 +120,19 @@ const AddTodo = ({ add }) => {
         </div>
         </div>
         <div className={styles.button}>
-=======
-        disablePortal
-        id="combo-box-demo"
-        options={data}
-        getOptionSelected={(option, value) => option.label === value.label}
-        onChange={(e, value) => {
-          if (value) {
-            setText(value.phrase);
-            setMessage(value.message);
-            setHasSent(false);
-          }
-        }}
-        getOptionLabel={(option) => option.label}
-        style={{ width: 300 }}
-        renderInput={(params) => (
-          <TextField {...params} label="Add Your Todo Here" />
-        )}
-      />
->>>>>>> main
       <button
         className={styles.AddTodoButton}
         onClick={() => {
           add(text);
-<<<<<<< HEAD
           setShowStep3(false)
           setShowStep4(true)
           sendMessage()
-=======
-          sendMessage();
->>>>>>> main
           setText("");
         }}
         type="button"
       >
         Add
       </button>
-<<<<<<< HEAD
       <div className={showStep3 ? styles.step3 : styles.displaynone}>
       <div className={styles.buttonflex}>
       <ArrowBackIcon className={styles.arrowlr} />
@@ -190,17 +155,6 @@ const AddTodo = ({ add }) => {
     <div className={showStep4 ? styles.white : styles.displaynone}></div>
       
       <p className={styles.messageresult} id="message">{hasSent ? "This is a message sent from the ListKeeper App on Behalf of " + userName + ". " + message + " I am at " + `https://www.google.com/maps/search/${latitude},${longitude}` +  " (Accurate to 1800m)" : null}</p>
-=======
-      <p>{latitude}</p>
-      <p>{longitude}</p>
-      <p id="message">
-        {hasSent
-          ? `This is a message sent from the ListKeeper App on Behalf of ${userName}. ${message} I am at ` +
-            `https://www.google.com/maps/search/${latitude},${longitude}` +
-            ` (Accurate to 1800m)`
-          : null}
-      </p>
->>>>>>> main
     </div>
     
     <div className={showStep4 ? styles.aboutinfo : styles.displaynone}>ListKeeper was created by <a href='https://github.com/AndrewRLloyd88'>Andrew Lloyd</a> and <a href="https://github.com/npwxx">Nicole Woodcock</a> for <a href="https://mintbean.io/meets/988938b2-f615-414d-8b5b-7be96b49bec6">Mintbean Javascript Hacks: Social Justice Hack Week</a> </div>
