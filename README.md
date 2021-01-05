@@ -5,12 +5,17 @@ ListKeeper is a safety app disguised as an unsuspecting todo list app for when y
 This project was built for the MintBean Social Justice Hackathon from December 4-10 2020
 
 We built the app using:
-*NextJS, ReactJS, MaterialUI on the front end
-*Twillio and SendGrid for the messaging integration
-*MongoDB on the backend
-*CircleCI and #Vercel for deployment.
+
+- NextJS, ReactJS, MaterialUI on the front end
+- Twillio and SendGrid for the messaging integration
+- MongoDB on the backend
+- CircleCI and #Vercel for deployment. \*\*Not currently deployed
 
 Contributors: [Nicole Woodcock](https://github.com/npwxx) and [Andrew Loyd](https://github.com/AndrewRLloyd88)
+
+## Video Demo
+
+Watch a demo of our app on [youtube](https://www.youtube.com/watch?v=4Pbw6cZ_xQw&feature=youtu.be)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
